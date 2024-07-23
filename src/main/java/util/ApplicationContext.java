@@ -3,9 +3,23 @@ package util;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import repository.Impl.PersonRepositoryImpl;
+import repository.PersonRepository;
+import service.Impl.PersonServiceImpl;
+import service.PersonService;
 
 public class ApplicationContext {
+
+    private EntityManagerFactory enf;
+    private EntityManager em;
+
+    private final PersonRepository personRepository;
+    private final PersonService personService;
+
     public ApplicationContext() {
+        this.em = getEntityManager();
+        personRepository = new PersonRepositoryImpl(em);
+        personService = new PersonServiceImpl(personRepository);
     }
 
     private static ApplicationContext applicationContext;
@@ -17,8 +31,6 @@ public class ApplicationContext {
         return applicationContext;
     }
 
-    private EntityManagerFactory enf;
-    private EntityManager em;
 
     public EntityManagerFactory getEntityManagerFactory() {
         if (enf == null) {
@@ -32,5 +44,9 @@ public class ApplicationContext {
             em = getEntityManagerFactory().createEntityManager();
         }
         return em;
+    }
+
+    public PersonService getPersonService() {
+        return personService;
     }
 }
