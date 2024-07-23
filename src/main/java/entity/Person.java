@@ -1,18 +1,18 @@
 package entity;
 
 import base.domain.BaseEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.util.Date;
+import java.time.LocalDate;
+
 
 @Builder
 
 @Entity
-@Table(name = Person.TABLE_NAME)
+@Table(name = Person.TABLE_NAME,
+        uniqueConstraints = @UniqueConstraint(columnNames = {Person.FIRSTNAME, Person.LASTNAME}))
 
 @Getter
 @Setter
@@ -28,12 +28,22 @@ public class Person extends BaseEntity<Long> {
 
     public static final String BIRTHDATE = "birthDate";
 
-    @Column(name = FIRSTNAME)
+    @Column(name = FIRSTNAME, nullable = false)
     String firstName;
 
-    @Column(name = LASTNAME)
+    @Column(name = LASTNAME, nullable = false)
     String lastName;
 
     @Column(name = BIRTHDATE)
-    Date birthDate;
+    LocalDate birthDate;
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "Id= " + super.getId() +
+                ", firstName= " + firstName +
+                ", lastName= " + lastName +
+                ", birthDate= " + birthDate +
+                "}";
+    }
 }
