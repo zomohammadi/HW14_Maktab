@@ -1,4 +1,5 @@
 import entity.Person;
+import entity.Teacher;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.RollbackException;
 import org.hibernate.PropertyValueException;
@@ -14,10 +15,11 @@ public class JpaApplication {
     public static void main(String[] args) {
         ApplicationContext applicationContext = ApplicationContext.getInstance();
 
-        //------save in DB
+       //------save in DB
 
-        Person person = Person.builder().firstName("Zohre").lastName("Saeedi").build();
-        applicationContext.getPersonService().save(person);
+     /*    Person person = Person.builder().firstName("Zohre").lastName("Saeedi").build();
+       applicationContext.getPersonService().save(person );
+        applicationContext.getPersonService().save(null);
         //-----RollbackException for duplicate value for unique constraint
         //-----PropertyValueException for not null constraint
 
@@ -42,7 +44,25 @@ public class JpaApplication {
         //-----delete
        // applicationContext.getPersonService().delete(person1);
         applicationContext.getPersonService().delete(null);
-        //applicationContext.getPersonService().delete(person);
+        //applicationContext.getPersonService().delete(person);*/
+
+
+        System.out.println("-------------------------------------------------------------------------");
+        /*Teacher teacher = new Teacher();
+        teacher.setFirstName("Amir");
+        teacher.setLastName("Hashemi");
+        applicationContext.getTeacherService().save(teacher);*/
+
+        Person person2 = new Teacher();
+        person2.setFirstName("sahar");
+        person2.setLastName("saboori");
+        person2.setBirthDate(LocalDate.of(1900,01,1));
+        applicationContext.getTeacherService().save((Teacher) person2);
+
+        Teacher teacher3 = new Teacher();
+        teacher3.setLastName("ghanbari");
+        teacher3.setSalary(1000000l);
+        applicationContext.getTeacherService().save(teacher3);
 
     }
 
