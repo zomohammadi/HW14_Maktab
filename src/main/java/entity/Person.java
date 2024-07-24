@@ -14,6 +14,9 @@ import java.time.LocalDate;
 @Table(name = Person.TABLE_NAME,
         uniqueConstraints = @UniqueConstraint(columnNames = {Person.FIRSTNAME, Person.LASTNAME}))
 
+
+@Inheritance(strategy = InheritanceType.JOINED)
+
 @Getter
 @Setter
 @AllArgsConstructor
