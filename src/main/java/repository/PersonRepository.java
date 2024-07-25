@@ -2,17 +2,19 @@ package repository;
 
 import entity.Person;
 import jakarta.persistence.EntityManager;
+import org.yaml.snakeyaml.events.Event;
 
 import java.util.List;
 import java.util.Set;
 
-public interface PersonRepository {
-    void save(Person person);
+public interface PersonRepository<T extends Person> {
+    T save(T person);
 
-    Person update(Person person);
+    T update(T person);
 
-    Boolean find(Person person);
+    T find(T person);
 
-    List<Person> findAll();
-    void delete(Person person);
+    List<T> findAll(String tableName);
+    void delete(T person);
+    boolean contains(Long id);
 }

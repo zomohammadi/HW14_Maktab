@@ -32,4 +32,17 @@ public class Student extends Person {
 
     @Column(name = ENTERING_YEAR)
     int enteringYear;
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id= " + getId() +
+                ", FirstName= " + super.getFirstName() +
+                ", LastNam= " + super.getLastName() +
+                ", BirthDate= " + super.getBirthDate() +
+                "studentCode='" + studentCode +
+                ", fieldOfStudy='" + fieldOfStudy +
+                ", enteringYear=" + enteringYear +
+                "}";
+    }
 }

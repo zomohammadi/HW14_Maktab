@@ -35,4 +35,16 @@ public class Teacher extends Person {
     @Column(name = SALARY)
     double salary;
 
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "id= "+getId()+
+                ", FirstName= "+super.getFirstName()+
+                ", LastNam= "+super.getLastName()+
+                ", BirthDate= "+super.getBirthDate()+
+                ", teacherCode='" + teacherCode +
+                ", degree=" + degree +
+                ", salary=" + salary +
+                "}";
+    }
 }

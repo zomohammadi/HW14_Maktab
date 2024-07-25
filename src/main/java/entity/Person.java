@@ -24,7 +24,7 @@ import java.time.LocalDate;
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Person extends BaseEntity<Long> {
-    public static final String TABLE_NAME = "person";
+    public static final String TABLE_NAME = "Person";
     public static final String FIRSTNAME = "first_name";
 
     public static final String LASTNAME = "last_name";

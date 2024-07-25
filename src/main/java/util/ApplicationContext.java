@@ -5,8 +5,10 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import repository.Impl.PersonRepositoryImpl;
 import repository.PersonRepository;
-import service.Impl.PersonServiceImpl;
-import service.PersonService;
+import service.Impl.StudentServiceImpl;
+import service.Impl.TeacherServiceImpl;
+import service.StudentService;
+import service.TeacherService;
 
 public class ApplicationContext {
 
@@ -14,12 +16,17 @@ public class ApplicationContext {
     private EntityManager em;
 
     private final PersonRepository personRepository;
-    private final PersonService personService;
+    //private final PersonService personService;
+    private final TeacherService teacherService;
+    public  final StudentService studentService;
 
     public ApplicationContext() {
         this.em = getEntityManager();
         personRepository = new PersonRepositoryImpl(em);
-        personService = new PersonServiceImpl(personRepository);
+
+        teacherService = new TeacherServiceImpl(personRepository);
+        studentService = new StudentServiceImpl(personRepository);
+
     }
 
     private static ApplicationContext applicationContext;
@@ -46,7 +53,11 @@ public class ApplicationContext {
         return em;
     }
 
-    public PersonService getPersonService() {
-        return personService;
+    public TeacherService getTeacherService() {
+        return teacherService;
+    }
+
+    public StudentService getStudentService() {
+        return studentService;
     }
 }
